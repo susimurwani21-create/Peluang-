@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Peluang - Matematika SMP Kelas 8</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax CDN for Beautiful Math Notation -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-600 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-2 md:mb-0">
+                <div class="p-2 bg-white text-indigo-600 rounded-lg shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.003 9.003 0 1020.945 13H11V3.055z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">Peluang Interaktif</h1>
+                    <p class="text-xs text-indigo-200">Matematika SMP Kelas VIII</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap gap-2">
+                <button onclick="switchTab('beranda')" id="btn-beranda" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition bg-indigo-700 text-white shadow">Beranda</button>
+                <button onclick="switchTab('materi')" id="btn-materi" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-indigo-100 hover:bg-indigo-500">Materi</button>
+                <button onclick="switchTab('simulasi')" id="btn-simulasi" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-indigo-100 hover:bg-indigo-500">Simulasi</button>
+                <button onclick="switchTab('kuis')" id="btn-kuis" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-indigo-100 hover:bg-indigo-500">Kuis</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-6 max-w-5xl">
+
+        <!-- ================= BERANDA TAB ================= -->
+        <section id="tab-beranda" class="tab-content active space-y-6">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl p-6 md:p-10 shadow-lg relative overflow-hidden">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="bg-indigo-400 bg-opacity-40 text-indigo-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Media Pembelajaran Interaktif</span>
+                    <h2 class="text-3xl md:text-5xl font-black mt-3 mb-4 leading-tight">Ayo Belajar Peluang dengan Seru!</h2>
+                    <p class="text-indigo-100 text-base md:text-lg mb-6 leading-relaxed">Pernahkah kamu menebak hasil lemparan koin atau dadu? Di sini kita akan membongkar rahasia matematika di balik permainan tebak-tebakan tersebut!</p>
+                    <button onclick="switchTab('materi')" class="bg-white text-indigo-600 hover:bg-indigo-50 font-bold px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">Mulai Belajar Sekarang &rarr;</button>
+                </div>
+                <div class="absolute right-0 bottom-0 top-0 w-1/3 hidden md:flex items-center justify-center opacity-20">
+                    <svg class="w-full h-full text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <circle cx="12" cy="12" r="3" />
+                        <circle cx="7" cy="7" r="1" />
+                        <circle cx="17" cy="17" r="1" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Fitur Utama Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xl">1</div>
+                    <h3 class="font-bold text-lg mb-2">Materi yang Mudah Dipahami</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pelajari konsep Ruang Sampel, Peluang Teoretis, hingga Peluang Empiris dengan ilustrasi visual dan contoh konkret sehari-hari.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xl">2</div>
+                    <h3 class="font-bold text-lg mb-2">Simulasi Eksperimen</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Coba langsung lempar koin atau gelindingkan dadu ribuan kali secara instan untuk membuktikan teori peluang secara nyata!</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xl">3</div>
+                    <h3 class="font-bold text-lg mb-2">Evaluasi Interaktif</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Uji pemahamanmu setelah belajar dengan kuis interaktif yang dilengkapi skor instan dan pembahasan yang sangat jelas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MATERI TAB ================= -->
+        <section id="tab-materi" class="tab-content space-y-6">
+            <!-- Sub-Navigation for Materi -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
+                <button onclick="switchMateriSub('materi-1')" id="btn-materi-1" class="materi-sub-btn px-4 py-2 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-700">1. Ruang Sampel & Kejadian</button>
+                <button onclick="switchMateriSub('materi-2')" id="btn-materi-2" class="materi-sub-btn px-4 py-2 rounded-full text-sm font-semibold hover:bg-slate-100 text-slate-600">2. Peluang Teoretis</button>
+                <button onclick="switchMateriSub('materi-3')" id="btn-materi-3" class="materi-sub-btn px-4 py-2 rounded-full text-sm font-semibold hover:bg-slate-100 text-slate-600">3. Peluang Empiris</button>
+            </div>
+
+            <!-- Sub Materi 1: Ruang Sampel -->
+            <div id="materi-1" class="materi-sub-content space-y-6">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-4 flex items-center">
+                        <span class="mr-2">🎲</span> Ruang Sampel dan Titik Sampel
+                    </h3>
+                    <p class="mb-4 leading-relaxed">Sebelum memahami peluang, kita harus mengenal dasar-dasarnya terlebih dahulu:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                        <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-800 mb-1">Percobaan</h4>
+                            <p class="text-xs text-indigo-950">Suatu kegiatan yang dapat memberikan beberapa kemungkinan hasil. Contoh: melempar koin, menggelindingkan dadu.</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-800 mb-1">Ruang Sampel ($S$)</h4>
+                            <p class="text-xs text-purple-950">Himpunan dari semua hasil yang mungkin terjadi dari suatu percobaan. Banyaknya anggota ruang sampel dinyatakan dengan $n(S)$.</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                            <h4 class="font-bold text-teal-800 mb-1">Titik Sampel</h4>
+                            <p class="text-xs text-teal-950">Anggota-anggota dari ruang sampel atau setiap hasil tunggal yang mungkin terjadi.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-lg">💡 Contoh Klasik:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-3 bg-white rounded-lg border shadow-xs">
+                                <span class="font-bold text-indigo-600">1. Pelemparan Sebuah Koin</span>
+                                <p class="text-sm mt-1">Hasil yang mungkin muncul adalah Angka (A) atau Gambar (G).</p>
+                                <ul class="list-disc list-inside text-sm mt-1 text-slate-600">
+                                    <li>Ruang Sampel: $S = \{A, G\}$</li>
+                                    <li>Banyaknya anggota: $n(S) = 2$</li>
+                                </ul>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border shadow-xs">
+                                <span class="font-bold text-indigo-600">2. Pelemparan Sebuah Dadu</span>
+                                <p class="text-sm mt-1">Mata dadu yang mungkin muncul adalah angka 1, 2, 3, 4, 5, atau 6.</p>
+                                <ul class="list-disc list-inside text-sm mt-1 text-slate-600">
+                                    <li>Ruang Sampel: $S = \{1, 2, 3, 4, 5, 6\}$</li>
+                                    <li>Banyaknya anggota: $n(S) = 6$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Materi 2: Peluang Teoretis -->
+            <div id="materi-2" class="materi-sub-content hidden space-y-6">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-4 flex items-center">
+                        <span class="mr-2">📏</span> Peluang Teoretis (Teoretis)
+                    </h3>
+                    <p class="mb-4 leading-relaxed">
+                        **Peluang Teoretis** adalah rasio antara banyaknya kejadian yang diharapkan dengan banyaknya seluruh anggota ruang sampel pada suatu kondisi ideal.
+                    </p>
+
+                    <div class="bg-indigo-600 text-white p-6 rounded-xl text-center shadow-inner my-6">
+                        <p class="text-sm uppercase tracking-widest text-indigo-200">Rumus Utama Peluang Teoretis</p>
+                        <p class="text-2xl md:text-3xl font-bold mt-2 mb-2">$$P(A) = \frac{n(A)}{n(S)}$$</p>
+                        <div class="text-xs text-indigo-100 flex flex-col md:flex-row justify-center gap-3 md:gap-6 mt-4 border-t border-indigo-500 pt-3">
+                            <span><strong>$P(A)$</strong> : Peluang kejadian $A$</span>
+                            <span><strong>$n(A)$</strong> : Banyaknya anggota kejadian $A$</span>
+                            <span><strong>$n(S)$</strong> : Banyaknya anggota ruang sampel $S$</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg my-4">
+                        <p class="text-sm text-amber-900 leading-relaxed">
+                            <strong>⚠️ Kisaran Nilai Peluang:</strong> Nilai peluang suatu kejadian selalu berada di antara $0$ dan $1$ atau ditulis $0 \le P(A) \le 1$.
+                        </p>
+                        <ul class="list-disc list-inside text-xs text-amber-800 mt-2 space-y-1">
+                            <li>Jika $P(A) = 0$, artinya kejadian tersebut <strong>mustahil</strong> terjadi (contoh: manusia bertelur).</li>
+                            <li>Jika $P(A) = 1$, artinya kejadian tersebut <strong>pasti</strong> terjadi (contoh: matahari terbit dari timur).</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800">✍️ Contoh Soal:</h4>
+                        <p class="text-sm">Sebuah dadu dilempar sekali. Berapa peluang munculnya mata dadu prima?</p>
+                        <div class="bg-white p-4 rounded border text-sm space-y-2 text-slate-700">
+                            <p><strong>Penyelesaian:</strong></p>
+                            <p>1. Cari ruang sampel: $S = \{1, 2, 3, 4, 5, 6\} \rightarrow n(S) = 6$</p>
+                            <p>2. Cari kejadian munculnya angka prima: $A = \{2, 3, 5\} \rightarrow n(A) = 3$</p>
+                            <p>3. Masukkan rumus: 
+                                $$P(A) = \frac{n(A)}{n(S)} = \frac{3}{6} = \frac{1}{2} = 0,5$$
+                            </p>
+                            <p class="text-indigo-600 font-semibold">Jadi, peluang munculnya mata dadu bermata prima adalah $\frac{1}{2}$ atau $50\%$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Materi 3: Peluang Empiris -->
+            <div id="materi-3" class="materi-sub-content hidden space-y-6">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-4 flex items-center">
+                        <span class="mr-2">📊</span> Peluang Empiris (Eksperimen)
+                    </h3>
+                    <p class="mb-4 leading-relaxed">
+                        **Peluang Empiris** (juga disebut Frekuensi Relatif) adalah perbandingan antara banyak kejadian yang muncul dengan seluruh percobaan yang dilakukan secara nyata.
+                    </p>
+
+                    <div class="bg-emerald-600 text-white p-6 rounded-xl text-center shadow-inner my-6">
+                        <p class="text-sm uppercase tracking-widest text-emerald-200">Rumus Peluang Empiris</p>
+                        <p class="text-2xl md:text-3xl font-bold mt-2 mb-2">$$f_r = \frac{\text{Banyak kejadian } A \text{ yang muncul}}{\text{Banyak percobaan yang dilakukan}}$$</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800">✍️ Contoh Nyata:</h4>
+                        <p class="text-sm">Adit melempar koin sebanyak $50$ kali. Hasilnya, sisi Angka muncul sebanyak $28$ kali, sedangkan sisanya Gambar. Tentukan peluang empiris munculnya sisi Gambar!</p>
+                        <div class="bg-white p-4 rounded border text-sm space-y-2 text-slate-700">
+                            <p><strong>Penyelesaian:</strong></p>
+                            <p>1. Banyak percobaan = $50$</p>
+                            <p>2. Banyak kejadian muncul Gambar = $50 - 28 = 22$ kali.</p>
+                            <p>3. Peluang empiris muncul Gambar:
+                                $$f_r = \frac{22}{50} = \frac{11}{25} = 0,44$$
+                            </p>
+                            <p class="text-emerald-600 font-semibold">Jadi, peluang empiris muncul Gambar pada percobaan Adit adalah $0,44$ atau $44\%$.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-lg my-4 text-sm text-indigo-900">
+                        <p>💡 <strong>Hubungan Peluang Empiris & Teoretis:</strong> Jika kita melakukan percobaan dalam jumlah yang sangat banyak (misal: dilempar 1000 kali atau lebih), maka nilai <strong>Peluang Empiris</strong> akan semakin mendekati nilai <strong>Peluang Teoretis</strong>. Yuk kita buktikan di menu <strong>Simulasi</strong>!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SIMULASI TAB ================= -->
+        <section id="tab-simulasi" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <h3 class="text-2xl font-bold text-indigo-600 mb-2">🔬 Laboratorium Simulasi Peluang</h3>
+                <p class="text-slate-600 text-sm mb-6">Pilih objek simulasi untuk melihat perbedaan secara langsung antara peluang teoretis dan empiris.</p>
+
+                <!-- Toggle Simulator -->
+                <div class="flex space-x-4 mb-6">
+                    <button onclick="switchSimulator('coin')" id="btn-sim-coin" class="flex-1 py-3 px-4 rounded-xl font-bold transition flex items-center justify-center space-x-2 border-2 border-indigo-600 bg-indigo-50 text-indigo-700">
+                        <span>🪙</span> <span>Simulasi Koin</span>
+                    </button>
+                    <button onclick="switchSimulator('dice')" id="btn-sim-dice" class="flex-1 py-3 px-4 rounded-xl font-bold transition flex items-center justify-center space-x-2 border-2 border-transparent bg-slate-100 text-slate-600 hover:bg-slate-200">
+                        <span>🎲</span> <span>Simulasi Dadu</span>
+                    </button>
+                </div>
+
+                <!-- COIN SIMULATOR -->
+                <div id="sim-coin-content" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="flex flex-col items-center justify-center p-6 bg-slate-50 rounded-xl border border-slate-200">
+                            <!-- Visual Coin -->
+                            <div id="coin-graphic" class="w-32 h-32 bg-amber-400 rounded-full border-4 border-amber-500 flex items-center justify-center shadow-lg transition-all duration-300 font-bold text-amber-950 text-2xl relative">
+                                ANGKA
+                            </div>
+                            <div class="flex gap-2 mt-6 w-full">
+                                <button onclick="simulateCoin(1)" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-sm transition">Lempar 1x</button>
+                                <button onclick="simulateCoin(10)" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-sm transition">Lempar 10x</button>
+                                <button onclick="simulateCoin(100)" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-sm transition">Lempar 100x</button>
+                            </div>
+                            <button onclick="resetCoin()" class="mt-3 text-xs text-rose-500 hover:underline font-semibold">Reset Data</button>
+                        </div>
+
+                        <!-- Coin Stats -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-lg text-slate-800">Data Hasil Pelemparan:</h4>
+                            <div class="bg-slate-50 p-4 rounded-lg border space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span>Total Pelemparan ($N$):</span>
+                                    <span id="coin-total-flips" class="font-bold">0</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 pt-2 border-t text-sm">
+                                    <div>
+                                        <p class="text-slate-500">Angka Muncul:</p>
+                                        <p class="text-xl font-bold" id="coin-heads-count">0</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-slate-500">Gambar Muncul:</p>
+                                        <p class="text-xl font-bold" id="coin-tails-count">0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Comparison -->
+                            <div class="space-y-3 text-sm">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Peluang Empiris (Sisi Angka):</span>
+                                        <span id="coin-heads-emp" class="font-bold">0%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                        <div id="bar-heads-emp" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Peluang Teoretis (Sisi Angka):</span>
+                                        <span class="font-bold text-indigo-600">50%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                        <div class="bg-indigo-400 h-2.5 rounded-full" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DICE SIMULATOR -->
+                <div id="sim-dice-content" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="flex flex-col items-center justify-center p-6 bg-slate-50 rounded-xl border border-slate-200">
+                            <!-- Visual Die -->
+                            <div id="dice-graphic" class="w-24 h-24 bg-white border-4 border-slate-300 rounded-2xl flex items-center justify-center shadow-lg font-black text-slate-800 text-4xl transform transition-transform duration-300">
+                                ⚀
+                            </div>
+                            <div class="flex gap-2 mt-6 w-full">
+                                <button onclick="simulateDice(1)" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-sm transition">Kocok 1x</button>
+                                <button onclick="simulateDice(10)" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-sm transition">Kocok 10x</button>
+                                <button onclick="simulateDice(100)" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-sm transition">Kocok 100x</button>
+                            </div>
+                            <button onclick="resetDice()" class="mt-3 text-xs text-rose-500 hover:underline font-semibold">Reset Data</button>
+                        </div>
+
+                        <!-- Dice Stats -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-lg text-slate-800">Total Lemparan ($N$): <span id="dice-total-rolls" class="text-indigo-600">0</span></h4>
+                            
+                            <!-- Custom Chart Bars -->
+                            <div class="space-y-2">
+                                <!-- Eye 1 -->
+                                <div class="flex items-center text-xs">
+                                    <span class="w-6 font-bold text-base">⚀</span>
+                                    <div class="flex-grow bg-slate-200 h-4 rounded mx-2 overflow-hidden relative">
+                                        <div id="bar-dice-1" class="bg-emerald-500 h-full" style="width: 0%"></div>
+                                        <span id="lbl-dice-1" class="absolute inset-y-0 left-2 flex items-center text-slate-700 font-semibold text-[10px]">0x (0%)</span>
+                                    </div>
+                                </div>
+                                <!-- Eye 2 -->
+                                <div class="flex items-center text-xs">
+                                    <span class="w-6 font-bold text-base">⚁</span>
+                                    <div class="flex-grow bg-slate-200 h-4 rounded mx-2 overflow-hidden relative">
+                                        <div id="bar-dice-2" class="bg-emerald-500 h-full" style="width: 0%"></div>
+                                        <span id="lbl-dice-2" class="absolute inset-y-0 left-2 flex items-center text-slate-700 font-semibold text-[10px]">0x (0%)</span>
+                                    </div>
+                                </div>
+                                <!-- Eye 3 -->
+                                <div class="flex items-center text-xs">
+                                    <span class="w-6 font-bold text-base">⚂</span>
+                                    <div class="flex-grow bg-slate-200 h-4 rounded mx-2 overflow-hidden relative">
+                                        <div id="bar-dice-3" class="bg-emerald-500 h-full" style="width: 0%"></div>
+                                        <span id="lbl-dice-3" class="absolute inset-y-0 left-2 flex items-center text-slate-700 font-semibold text-[10px]">0x (0%)</span>
+                                    </div>
+                                </div>
+                                <!-- Eye 4 -->
+                                <div class="flex items-center text-xs">
+                                    <span class="w-6 font-bold text-base">⚃</span>
+                                    <div class="flex-grow bg-slate-200 h-4 rounded mx-2 overflow-hidden relative">
+                                        <div id="bar-dice-4" class="bg-emerald-500 h-full" style="width: 0%"></div>
+                                        <span id="lbl-dice-4" class="absolute inset-y-0 left-2 flex items-center text-slate-700 font-semibold text-[10px]">0x (0%)</span>
+                                    </div>
+                                </div>
+                                <!-- Eye 5 -->
+                                <div class="flex items-center text-xs">
+                                    <span class="w-6 font-bold text-base">⚄</span>
+                                    <div class="flex-grow bg-slate-200 h-4 rounded mx-2 overflow-hidden relative">
+                                        <div id="bar-dice-5" class="bg-emerald-500 h-full" style="width: 0%"></div>
+                                        <span id="lbl-dice-5" class="absolute inset-y-0 left-2 flex items-center text-slate-700 font-semibold text-[10px]">0x (0%)</span>
+                                    </div>
+                                </div>
+                                <!-- Eye 6 -->
+                                <div class="flex items-center text-xs">
+                                    <span class="w-6 font-bold text-base">⚅</span>
+                                    <div class="flex-grow bg-slate-200 h-4 rounded mx-2 overflow-hidden relative">
+                                        <div id="bar-dice-6" class="bg-emerald-500 h-full" style="width: 0%"></div>
+                                        <span id="lbl-dice-6" class="absolute inset-y-0 left-2 flex items-center text-slate-700 font-semibold text-[10px]">0x (0%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Peluang teoretis masing-masing mata dadu adalah $\approx 16,7\%$. Perhatikan bagaimana persentase empiris akan stabil di sekitar garis rata-rata seiring bertambahnya lemparan!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= KUIS TAB ================= -->
+        <section id="tab-kuis" class="tab-content space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-100 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-indigo-600 mb-2 text-center">🏆 Uji Kemampuan Peluangmu</h3>
+                <p class="text-slate-500 text-sm text-center mb-6">Ukur seberapa dalam pemahamanmu tentang materi peluang.</p>
+
+                <!-- Start Screen -->
+                <div id="kuis-start-screen" class="text-center py-6 space-y-4">
+                    <p class="text-slate-600">Kuis terdiri dari 5 soal pilihan ganda acak dengan pembahasan lengkap di akhir sesi.</p>
+                    <button onclick="startQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5">Mulai Kuis Sekarang</button>
+                </div>
+
+                <!-- Quiz Interactive Screen -->
+                <div id="kuis-play-screen" class="hidden space-y-6">
+                    <!-- Progress Bar -->
+                    <div class="flex justify-between items-center text-xs text-slate-500">
+                        <span>Soal <span id="current-question-num" class="font-bold text-indigo-600">1</span> dari 5</span>
+                        <span id="quiz-progress-percent">20%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 rounded-full h-1.5">
+                        <div id="quiz-progress-bar" class="bg-indigo-600 h-1.5 rounded-full" style="width: 20%"></div>
+                    </div>
+
+                    <!-- Question Text -->
+                    <div class="bg-slate-50 p-5 rounded-lg border">
+                        <p id="quiz-question-text" class="font-semibold text-slate-800 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Options Grid -->
+                    <div class="grid grid-cols-1 gap-3" id="quiz-options-container">
+                        <!-- Options generated dynamically -->
+                    </div>
+
+                    <!-- Next Button -->
+                    <button id="btn-next-question" onclick="nextQuestion()" class="w-full bg-slate-200 text-slate-600 font-bold py-3 rounded-lg hover:bg-slate-300 transition" disabled>Pilih Jawaban Terlebih Dahulu</button>
+                </div>
+
+                <!-- Result Screen -->
+                <div id="kuis-result-screen" class="hidden text-center py-6 space-y-6">
+                    <div class="w-24 h-24 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-4xl font-bold mx-auto">
+                        <span id="quiz-final-score">0</span>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-slate-800 mb-1" id="quiz-congrats">Hebat!</h4>
+                        <p class="text-slate-500" id="quiz-summary-text">Kamu telah menyelesaikan kuis ini.</p>
+                    </div>
+                    <div class="text-left bg-slate-50 p-4 rounded-xl border border-slate-200 max-h-80 overflow-y-auto space-y-4" id="quiz-review-container">
+                        <!-- Review list generated dynamically -->
+                    </div>
+                    <div class="flex gap-4">
+                        <button onclick="startQuiz()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition">Coba Lagi</button>
+                        <button onclick="switchTab('materi')" class="flex-1 bg-slate-200 text-slate-600 font-bold py-3 rounded-lg transition">Pelajari Lagi</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-6 mt-12 border-t border-slate-700 text-xs text-center">
+        <div class="container mx-auto px-4 space-y-2">
+            <p>&copy; 2026 Media Pembelajaran Interaktif Peluang SMP Kelas VIII. Didesain untuk kemudahan belajar.</p>
+            <p class="text-slate-500">Materi mengacu pada Kurikulum Merdeka & K13 Matematika SMP Kelas 8.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE LOGIC (JAVASCRIPT) -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show current tab
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            // Update Navbar buttons active state
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-700', 'text-white', 'shadow');
+                btn.classList.add('text-indigo-100', 'hover:bg-indigo-500');
+            });
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.remove('text-indigo-100', 'hover:bg-indigo-500');
+            activeBtn.classList.add('bg-indigo-700', 'text-white', 'shadow');
+        }
+
+        // Materi Sub-tabs switching logic
+        function switchMateriSub(materiId) {
+            // Hide all materi parts
+            document.querySelectorAll('.materi-sub-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Show selected materi part
+            document.getElementById(materiId).classList.remove('hidden');
+
+            // Update buttons
+            document.querySelectorAll('.materi-sub-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-100', 'text-indigo-700');
+                btn.classList.add('hover:bg-slate-100', 'text-slate-600');
+            });
+            const activeBtn = document.getElementById(`btn-${materiId}`);
+            activeBtn.classList.remove('hover:bg-slate-100', 'text-slate-600');
+            activeBtn.classList.add('bg-indigo-100', 'text-indigo-700');
+
+            // Trigger MathJax typeset to render nicely
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Simulator Switching Logic
+        function switchSimulator(simType) {
+            const btnCoin = document.getElementById('btn-sim-coin');
+            const btnDice = document.getElementById('btn-sim-dice');
+            const contentCoin = document.getElementById('sim-coin-content');
+            const contentDice = document.getElementById('sim-dice-content');
+
+            if (simType === 'coin') {
+                btnCoin.className = "flex-1 py-3 px-4 rounded-xl font-bold transition flex items-center justify-center space-x-2 border-2 border-indigo-600 bg-indigo-50 text-indigo-700";
+                btnDice.className = "flex-1 py-3 px-4 rounded-xl font-bold transition flex items-center justify-center space-x-2 border-2 border-transparent bg-slate-100 text-slate-600 hover:bg-slate-200";
+                contentCoin.classList.remove('hidden');
+                contentDice.classList.add('hidden');
+            } else {
+                btnDice.className = "flex-1 py-3 px-4 rounded-xl font-bold transition flex items-center justify-center space-x-2 border-2 border-indigo-600 bg-indigo-50 text-indigo-700";
+                btnCoin.className = "flex-1 py-3 px-4 rounded-xl font-bold transition flex items-center justify-center space-x-2 border-2 border-transparent bg-slate-100 text-slate-600 hover:bg-slate-200";
+                contentDice.classList.remove('hidden');
+                contentCoin.classList.add('hidden');
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+            }
+        }
+
+        // --- SIMULASI KOIN ---
+        let coinFlips = 0;
+        let coinHeads = 0;
+        let coinTails = 0;
+
+        function simulateCoin(times) {
+            const coinGraphic = document.getElementById('coin-graphic');
+            coinGraphic.classList.add('scale-95', 'rotate-180');
+            
+            setTimeout(() => {
+                coinGraphic.classList.remove('scale-95', 'rotate-180');
+                let lastResult = "";
+                
+                for(let i=0; i<times; i++) {
+                    const roll = Math.random() < 0.5; // true = Angka, false = Gambar
+                    if (roll) {
+                        coinHeads++;
+                        lastResult = "ANGKA";
+                    } else {
+                        coinTails++;
+                        lastResult = "GAMBAR";
+                    }
+                    coinFlips++;
+                }
+
+                if (times === 1) {
+                    coinGraphic.textContent = lastResult;
+                    if(lastResult === "ANGKA") {
+                        coinGraphic.className = "w-32 h-32 bg-amber-400 rounded-full border-4 border-amber-500 flex items-center justify-center shadow-lg transition-all duration-300 font-bold text-amber-950 text-2xl relative";
+                    } else {
+                        coinGraphic.className = "w-32 h-32 bg-slate-300 rounded-full border-4 border-slate-400 flex items-center justify-center shadow-lg transition-all duration-300 font-bold text-slate-700 text-2xl relative";
+                    }
+                } else {
+                    coinGraphic.textContent = "KOIN";
+                    coinGraphic.className = "w-32 h-32 bg-gradient-to-r from-amber-400 to-slate-300 rounded-full border-4 border-slate-400 flex items-center justify-center shadow-lg transition-all duration-300 font-bold text-slate-800 text-xl relative";
+                }
+
+                // Update UI data
+                document.getElementById('coin-total-flips').innerText = coinFlips;
+                document.getElementById('coin-heads-count').innerText = coinHeads;
+                document.getElementById('coin-tails-count').innerText = coinTails;
+
+                const empHeadsPercent = coinFlips > 0 ? Math.round((coinHeads / coinFlips) * 100) : 0;
+                document.getElementById('coin-heads-emp').innerText = `${empHeadsPercent}%`;
+                document.getElementById('bar-heads-emp').style.width = `${empHeadsPercent}%`;
+            }, 150);
+        }
+
+        function resetCoin() {
+            coinFlips = 0;
+            coinHeads = 0;
+            coinTails = 0;
+            document.getElementById('coin-total-flips').innerText = '0';
+            document.getElementById('coin-heads-count').innerText = '0';
+            document.getElementById('coin-tails-count').innerText = '0';
+            document.getElementById('coin-heads-emp').innerText = '0%';
+            document.getElementById('bar-heads-emp').style.width = '0%';
+            document.getElementById('coin-graphic').textContent = "ANGKA";
+            document.getElementById('coin-graphic').className = "w-32 h-32 bg-amber-400 rounded-full border-4 border-amber-500 flex items-center justify-center shadow-lg transition-all duration-300 font-bold text-amber-950 text-2xl relative";
+        }
+
+
+        // --- SIMULASI DADU ---
+        let diceRolls = 0;
+        let diceCounts = [0, 0, 0, 0, 0, 0];
+        const diceGlyphs = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+
+        function simulateDice(times) {
+            const diceGraphic = document.getElementById('dice-graphic');
+            diceGraphic.classList.add('rotate-45', 'scale-90');
+
+            setTimeout(() => {
+                diceGraphic.classList.remove('rotate-45', 'scale-90');
+                let lastRollIdx = 0;
+
+                for (let i = 0; i < times; i++) {
+                    const rollIdx = Math.floor(Math.random() * 6); // 0 to 5
+                    diceCounts[rollIdx]++;
+                    diceRolls++;
+                    lastRollIdx = rollIdx;
+                }
+
+                if (times === 1) {
+                    diceGraphic.textContent = diceGlyphs[lastRollIdx];
+                } else {
+                    diceGraphic.textContent = "🎲";
+                }
+
+                // Update UI
+                document.getElementById('dice-total-rolls').innerText = diceRolls;
+                
+                // Cari angka frekuensi tertinggi untuk mengatur lebar relatif bar chart
+                const maxCount = Math.max(...diceCounts);
+
+                for (let i = 0; i < 6; i++) {
+                    const pct = diceRolls > 0 ? Math.round((diceCounts[i] / diceRolls) * 100) : 0;
+                    const barWidth = maxCount > 0 ? (diceCounts[i] / maxCount) * 100 : 0;
+                    
+                    document.getElementById(`bar-dice-${i+1}`).style.width = `${barWidth}%`;
+                    document.getElementById(`lbl-dice-${i+1}`).innerText = `${diceCounts[i]}x (${pct}%)`;
+                }
+
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+            }, 150);
+        }
+
+        function resetDice() {
+            diceRolls = 0;
+            diceCounts = [0, 0, 0, 0, 0, 0];
+            document.getElementById('dice-total-rolls').innerText = '0';
+            document.getElementById('dice-graphic').textContent = "⚀";
+
+            for(let i=1; i<=6; i++) {
+                document.getElementById(`bar-dice-${i}`).style.width = '0%';
+                document.getElementById(`lbl-dice-${i}`).innerText = '0x (0%)';
+            }
+        }
+
+
+        // --- KUIS INTERAKTIF ---
+        const quizQuestions = [
+            {
+                q: "Pada pelemparan satu buah dadu, berapa peluang munculnya mata dadu prima?",
+                o: ["1/6", "1/3", "1/2", "2/3"],
+                a: 2,
+                p: "Ruang sampel dadu $S = \\{1, 2, 3, 4, 5, 6\\} \\rightarrow n(S) = 6$. Kejadian muncul prima $A = \\{2, 3, 5\\} \\rightarrow n(A) = 3$. Maka Peluangnya $P(A) = \\frac{3}{6} = \\frac{1}{2}$."
+            },
+            {
+                q: "Dua buah koin dilemparkan secara bersamaan. Banyaknya anggota ruang sampel dari pelemparan tersebut adalah...",
+                o: ["2", "4", "6", "8"],
+                a: 1,
+                p: "Pada pelemparan dua koin secara bersamaan, ruang sampelnya adalah $S = \\{(A,A), (A,G), (G,A), (G,G)\\}$. Sehingga $n(S) = 4$."
+            },
+            {
+                q: "Dari 40 kali pelemparan koin, muncul sisi Gambar sebanyak 16 kali. Tentukan peluang empiris munculnya sisi Angka!",
+                o: ["3/5", "2/5", "3/4", "1/2"],
+                a: 0,
+                p: "Banyak pelemparan koin = 40. Kejadian muncul Angka = $40 - 16 = 24$ kali. Peluang empiris muncul Angka = $\\frac{24}{40}$ yang disederhanakan menjadi $\\frac{3}{5}$."
+            },
+            {
+                q: "Dalam sebuah kantong terdapat 5 kelereng merah, 3 kelereng kuning, dan 2 kelereng hijau. Jika diambil satu kelereng secara acak, berapa peluang terambilnya kelereng kuning?",
+                o: ["1/5", "3/10", "1/2", "3/5"],
+                a: 1,
+                p: "Jumlah kelereng keseluruhan (Ruang Sampel) $n(S) = 5 + 3 + 2 = 10$. Banyak kelereng kuning $n(K) = 3$. Peluang terambilnya kuning adalah $P(K) = \\frac{3}{10}$."
+            },
+            {
+                q: "Peluang seorang siswa lulus ujian matematika adalah 0,85. Berapakah peluang siswa tersebut TIDAK lulus ujian matematika?",
+                o: ["0,15", "0,25", "0,85", "1,15"],
+                a: 0,
+                p: "Peluang kejadian bukan $A$ (komplemen) adalah $P(A^c) = 1 - P(A)$. Maka peluang tidak lulus adalah $1 - 0,85 = 0,15$."
+            }
+        ];
+
+        let currentQuestionIdx = 0;
+        let selectedOptionIdx = null;
+        let userAnswers = [];
+
+        function startQuiz() {
+            currentQuestionIdx = 0;
+            selectedOptionIdx = null;
+            userAnswers = [];
+            
+            document.getElementById('kuis-start-screen').classList.add('hidden');
+            document.getElementById('kuis-result-screen').classList.add('hidden');
+            document.getElementById('kuis-play-screen').classList.remove('hidden');
+
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const currentQ = quizQuestions[currentQuestionIdx];
+            selectedOptionIdx = null;
+
+            // Update Progress UI
+            document.getElementById('current-question-num').innerText = currentQuestionIdx + 1;
+            const pct = Math.round(((currentQuestionIdx + 1) / quizQuestions.length) * 100);
+            document.getElementById('quiz-progress-percent').innerText = `${pct}%`;
+            document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
+
+            // Setup Question text
+            document.getElementById('quiz-question-text').innerText = currentQ.q;
+
+            // Setup Options
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = '';
+            
+            currentQ.o.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:bg-indigo-50 hover:border-indigo-300 transition flex items-center justify-between";
+                btn.onclick = () => selectOption(idx);
+                btn.id = `opt-btn-${idx}`;
+                btn.innerHTML = `<span>${opt}</span><span class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-xs text-white" id="opt-chk-${idx}"></span>`;
+                optionsContainer.appendChild(btn);
+            });
+
+            // Disable Next Button
+            const nextBtn = document.getElementById('btn-next-question');
+            nextBtn.disabled = true;
+            nextBtn.className = "w-full bg-slate-200 text-slate-400 font-bold py-3 rounded-lg cursor-not-allowed";
+            nextBtn.innerText = "Pilih Jawaban Terlebih Dahulu";
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function selectOption(idx) {
+            selectedOptionIdx = idx;
+
+            // Reset all option styles
+            const currentQ = quizQuestions[currentQuestionIdx];
+            currentQ.o.forEach((_, oIdx) => {
+                const btn = document.getElementById(`opt-btn-${oIdx}`);
+                const chk = document.getElementById(`opt-chk-${oIdx}`);
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:bg-indigo-50 hover:border-indigo-300 transition flex items-center justify-between bg-white";
+                chk.className = "w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-xs text-white";
+                chk.innerText = "";
+            });
+
+            // Highlight selected option
+            const selectedBtn = document.getElementById(`opt-btn-${idx}`);
+            const selectedChk = document.getElementById(`opt-chk-${idx}`);
+            selectedBtn.className = "w-full text-left p-4 rounded-xl border-2 border-indigo-600 bg-indigo-50 text-indigo-900 font-semibold transition flex items-center justify-between";
+            selectedChk.className = "w-5 h-5 rounded-full bg-indigo-600 border border-indigo-600 flex items-center justify-center text-xs text-white font-bold";
+            selectedChk.innerHTML = "&#10003;"; // Checkmark symbol
+
+            // Enable Next Button
+            const nextBtn = document.getElementById('btn-next-question');
+            nextBtn.disabled = false;
+            nextBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow transition";
+            nextBtn.innerText = currentQuestionIdx === quizQuestions.length - 1 ? "Selesaikan Kuis" : "Soal Berikutnya";
+        }
+
+        function nextQuestion() {
+            if (selectedOptionIdx === null) return;
+
+            // Save answer
+            userAnswers.push(selectedOptionIdx);
+
+            if (currentQuestionIdx < quizQuestions.length - 1) {
+                currentQuestionIdx++;
+                loadQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('kuis-play-screen').classList.add('hidden');
+            document.getElementById('kuis-result-screen').classList.remove('hidden');
+
+            let score = 0;
+            const reviewContainer = document.getElementById('quiz-review-container');
+            reviewContainer.innerHTML = '';
+
+            quizQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.a;
+                if (isCorrect) score++;
+
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `p-4 rounded-lg border text-sm ${isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-950' : 'bg-rose-50 border-rose-200 text-rose-950'}`;
+                reviewItem.innerHTML = `
+                    <p class="font-bold">Soal ${idx + 1}: ${q.q}</p>
+                    <p class="mt-1 text-xs">Jawaban Kamu: <span class="font-semibold">${q.o[userAns]}</span> ${isCorrect ? '✅ (Benar)' : '❌ (Salah)'}</p>
+                    <p class="text-xs">Jawaban Benar: <span class="font-semibold text-emerald-800">${q.o[q.a]}</span></p>
+                    <div class="mt-3 p-3 bg-white bg-opacity-60 rounded border text-xs border-slate-200 leading-relaxed text-slate-700">
+                        <strong>Pembahasan:</strong> ${q.p}
+                    </div>
+                `;
+                reviewContainer.appendChild(reviewItem);
+            });
+
+            const finalScore = (score / quizQuestions.length) * 100;
+            document.getElementById('quiz-final-score').innerText = finalScore;
+
+            const congrats = document.getElementById('quiz-congrats');
+            if (finalScore === 100) {
+                congrats.innerText = "Sempurna! 🌟";
+            } else if (finalScore >= 70) {
+                congrats.innerText = "Hebat! 👍";
+            } else {
+                congrats.innerText = "Tetap Semangat! 💪";
+            }
+
+            document.getElementById('quiz-summary-text').innerText = `Kamu menjawab ${score} dari ${quizQuestions.length} soal dengan benar.`;
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+    </script>
+</body>
+</html>
